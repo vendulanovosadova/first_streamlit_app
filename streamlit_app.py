@@ -32,7 +32,7 @@ streamlit.dataframe(fruits_to_show)
 
 
 
-#Create the repeatable code blovk (called a function)
+#Create the repeatable code block (called a function)
 def get_fruityvice_data(this_fruit_choice): 
        fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + this_fruit_choice)
        fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
@@ -54,9 +54,7 @@ except URLError as e:
 
 
 #don't run anything past here while we troubleshoot
-streamlit.stop()
-
-
+#streamlit.stop()
 
 #my_cur = my_cnx.cursor()
 #my_cur.execute("select * from fruit_load_list")
