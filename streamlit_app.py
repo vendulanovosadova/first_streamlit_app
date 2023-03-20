@@ -34,7 +34,8 @@ fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_c
 fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())               #<<<<< ???
 # write your own comment - what does this do?                                           #<<<<< ???    
 
-
+#don't run anything past this while we troubleshoot
+streamlit.stop()
 import snowflake.connector                                                 # imports Snowflake table "fruit_load_list"
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])     #<<< references setting in Streamlit app, where we put password to connect with Snowflake
 my_cur = my_cnx.cursor()
