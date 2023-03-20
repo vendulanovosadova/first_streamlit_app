@@ -45,7 +45,7 @@ streamlit.dataframe(my_data_rows)
 
 #New section to display fruityvice api response
 add_my_fruit = streamlit.text_input('What fruit would you like information about?','jackfruit')
-streamlit.write('Thanks for adding ', fruit_choice) #<<<< here we set up the end user enters the fruit manually
+streamlit.write('Thanks for adding ', add_my_fruit) #<<<< here we set up the end user enters the fruit manually
 
 
 
