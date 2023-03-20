@@ -19,7 +19,7 @@ fruits_to_show = my_fruit_list.loc[fruits_selected]                        #<<<<
 # Display the table on the page.
 streamlit.dataframe(fruits_to_show) #<<< this shows the CSV breakdown below the table
 
-----------------------------------------------------------------------------------------------PART 3--------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------------
 #New section to display fruityvice api response - FIRST ROW WITH MANUAL INPUT
 streamlit.header("Fruityvice Fruit Advice!")
 fruit_choice = streamlit.text_input('What fruit would you like information about?','Kiwi')       #<<< ROW WITH MANUAL INPUT, we call in fruit_choice row
