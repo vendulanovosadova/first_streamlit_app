@@ -39,9 +39,15 @@ import snowflake.connector
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 my_cur = my_cnx.cursor()
 my_cur.execute("select * from fruit_load_list")
-my_data_rows = my_cur.fetchall()  #<<< selects all rows from the table
+my_data_rows = my_cur.fetchall()  #<<< selects all rows from the table from Snowflake, still adds a manual input from the Streamlit app. 
 streamlit.header("The fruit load list contains:")
 streamlit.dataframe(my_data_rows)
+
+#New section to display fruityvice api response
+add_my_fruit = streamlit.text_input('What fruit would you like information about?','jackfruit')
+streamlit.write('Thanks for adding ', fruit_choice) #<<<< here we set up the end user enters the fruit manually
+
+
 
 
 
