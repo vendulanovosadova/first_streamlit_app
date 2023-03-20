@@ -17,7 +17,7 @@ fruits_selected = streamlit.multiselect("Pick some fruits:", list(my_fruit_list.
 fruits_to_show = my_fruit_list.loc[fruits_selected]                        #<<<< as per your selection, it will return info from CSV file with nutrition info
 
 # Display the table on the page.
-#streamlit.dataframe(fruits_to_show) #<<< remove this 
+streamlit.dataframe(fruits_to_show) #<<< this whows the CSV breakdown below the table
 
 
 #New section to display fruityvice api response
