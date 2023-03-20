@@ -48,7 +48,7 @@ add_my_fruit = streamlit.text_input('What fruit would you like information about
 streamlit.write('Thanks for adding ', add_my_fruit) #<<<< here we set up the end user enters the fruit manually
 
 #This will not work correctly, but just go with it for now
-my_cur_execute("insert into fruit_load_list values ('from Streamlit')")
+my_cur_execute("insert into fruit_load_list values ('from Streamlit')") #<< this is a trouble allowing me to input data from Streamlit app directly
 
 
 
