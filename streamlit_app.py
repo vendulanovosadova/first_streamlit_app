@@ -54,4 +54,5 @@ my_cur_execute("insert into fruit_load_list values ('from Streamlit')") #<< this
 
 
 
+
 #streamlit.dataframe(fruityvice_normalized)
