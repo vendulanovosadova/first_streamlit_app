@@ -24,19 +24,24 @@ fruits_to_show = my_fruit_list.loc[fruits_selected]                        #<<<<
 streamlit.dataframe(fruits_to_show) #<<< this shows the CSV breakdown below the table
 
 #-----------------------------------------------------------------------------------------------------------------------------------------------
+
 #New section to display fruityvice api response - FIRST ROW WITH MANUAL INPUT
 streamlit.header("Fruityvice Fruit Advice!")
-fruit_choice = streamlit.text_input('What fruit would you like information about?','Kiwi')       #<<< ROW WITH MANUAL INPUT, we call in fruit_choice row
-streamlit.write('The user entered ', fruit_choice)       #<<<< here we set up the end user enters the fruit manually, connects with streamlit input from the row above
+try:
+     fruit_choice = streamlit.text_input('What fruit would you like information about?','Kiwi')       #<<< ROW WITH MANUAL INPUT, we call in fruit_choice row
+     if not fruit_choice:
+        streamlit.error: "Please select a fruit to get information.")
+     else:                                                                                       #<< these are STEPS which will be REPEATING!!!
+        fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
+        fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())                 #<< take the json version of the response and normalize it  
+        streamlit.dataframe(fruityvice_normalized)                                                #<< output it the screen as the table  
+ 
+except URLError as e:
+streamlit.error()
+      
+      
 
-
-#import requests                                                                         #<< as per above selection, it returns the info from Fruitivice website. 
-fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)  #<< as per above it returns the info from Fruitivice website. 
-##streamlit.text(fruityvice_response.json()) 
-
-# write your own comment -what does the next line do?                                   #<<<<< ???
-fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())               #<<<<< ???
-# write your own comment - what does this do?                                           #<<<<< ???    
+             
 
 #don't run anything past this while we troubleshoot
 streamlit.stop()
@@ -60,4 +65,3 @@ streamlit.write('Thanks for adding ', add_my_fruit) #<<<< here we set up the end
 
 
 
-#streamlit.dataframe(fruityvice_normalized)
