@@ -44,19 +44,32 @@ try:
 except URLError as e:
     streamlit.error()
       
+streamlit.header("The fruit load list contains:")
+#Snowflake-related functions
+def get_fruit_load_list():                                                     #<<< function that queries the table
+    with my_cnx.cursor() as my_cur:
+    my_cur.execute("select * from fruit_load_list")
+    return my_cur.fetchall() 
 
-     
-             
+#Add a button to load the fruit
+if streamlit.button('Get Fruit Load List'):                                    #<< button that calls our function and loads the data onto the page. 
+      my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])   #<<<setting in Streamlit app, where we put password to connect with Snowflake        
+      my_data_rows = get_fruit_load_list()                       
+      streamlit.dataframe(my_data_rows)   
+        
+        
+= snowflake.connector.connect(**streamlit.secrets["snowflake"]) 
+           
 
 #don't run anything past this while we troubleshoot
 streamlit.stop()
 import snowflake.connector                                                 # imports Snowflake table "fruit_load_list"
-my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])     #<<< references setting in Streamlit app, where we put password to connect with Snowflake
+
 my_cur = my_cnx.cursor()
 my_cur.execute("select * from fruit_load_list")           #<<< this is a Snowflake table, into which people also add manually via Streamlit app
-my_data_rows = my_cur.fetchall()                          #<<< selects all rows from the table from Snowflake, still adds a manual input from the Streamlit app. 
-streamlit.header("The fruit load list contains:")
-streamlit.dataframe(my_data_rows)
+
+
+
 
 #New section to display fruityvice api response
 add_my_fruit = streamlit.text_input('What fruit would you like information about?','jackfruit')
